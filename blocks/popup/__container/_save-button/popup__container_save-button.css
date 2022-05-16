@@ -1,4 +1,4 @@
-.popup__container__save-button {
+.popup__container_save-button {
     background-color: black;
     color: white;
     text-decoration: none;
@@ -12,7 +12,7 @@
 }
 
 @media screen and (max-width: 879px) {
-    .popup__container__save-button {
+    .popup__container_save-button {
         width: 238px;
         margin-top: 45px;
         margin-left: 22px;
