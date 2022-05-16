@@ -10,8 +10,8 @@ let sendForm = document.getElementById('save-button');
 let formElement = document.querySelector('.profile__info');
 let nameUser = document.querySelector('.profile__info-name');
 let jobUser  = document.querySelector('.profile__info-description');
-let nameInput = document.querySelector('.popup__container_form-name');
-let jobInput  = document.querySelector('.popup__container_form-description');
+let nameInput = document.querySelector('.popup__form-name');
+let jobInput  = document.querySelector('.popup__form-description');
 
 
 

@@ -1,4 +1,4 @@
-.popup__container_form {
+.popup__form {
     font-size: 14px;
     line-height: 16.94px;
     width: 354px;
@@ -10,12 +10,12 @@
     
 }
 
-.popup__container_form:last-of-type {
+.popup__form:last-of-type {
     margin-bottom: 0px;
 }
 
 @media screen and (max-width: 879px) {
-    .popup__container_form {
+    .popup__form {
         width: 234px;
         margin-left: 22px;
     }
