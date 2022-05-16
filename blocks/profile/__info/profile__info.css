@@ -3,9 +3,6 @@
     display: flex;
     flex-wrap: wrap;
     max-height: 20px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    
 }
 
 @media screen and (max-width: 879px) {
