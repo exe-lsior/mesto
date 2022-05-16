@@ -1,0 +1,23 @@
+.popup__container__form {
+    font-size: 14px;
+    line-height: 16.94px;
+    width: 354px;
+    border: none;
+    border-bottom: 1px solid #545454;
+    padding-bottom: 13px;
+    margin-left: 36px;
+    margin-bottom: 30px;
+    
+}
+
+.popup__container__form:last-of-type {
+    margin-bottom: 0px;
+}
+
+@media screen and (max-width: 879px) {
+    .popup__container__form {
+        width: 234px;
+        margin-left: 22px;
+    }
+}
+

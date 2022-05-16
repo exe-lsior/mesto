@@ -1,0 +1,23 @@
+.popup__container__save-button {
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    width: 358px;
+    margin-top: 48px;
+    margin-left: 36px;
+    margin-bottom: 37px;
+    padding-top: 14px;
+    padding-bottom: 18px;
+    text-align: center;
+}
+
+@media screen and (max-width: 879px) {
+    .popup__container__save-button {
+        width: 238px;
+        margin-top: 45px;
+        margin-left: 22px;
+        margin-bottom: 25px;
+        padding-top: 14px;
+        padding-bottom: 14px;
+    }
+}
