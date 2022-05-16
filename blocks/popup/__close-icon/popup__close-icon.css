@@ -1,4 +1,4 @@
-.popup__container_close-icon {
+.popup__close-icon {
     width: 32px;
     position: absolute;
     top: -40px;
@@ -6,12 +6,12 @@
     cursor: pointer;
 }
 
-.popup__container_close-icon:hover {
+.popup__close-icon:hover {
     opacity: 60%;
 }
 
 @media screen and (max-width: 879px) {
-    .popup__container_close-icon{
+    .popup__close-icon{
         width: 20px;
         right: 0px;
         top: -36px;
