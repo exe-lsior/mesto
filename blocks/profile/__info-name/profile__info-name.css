@@ -1,12 +1,10 @@
 .profile__info-name {
     font-weight: 500;
-    width: 294px;
     font-size: 42px;
     line-height: 48px;
     color: white;
     margin-top: 22px;
-    margin-bottom: 16px;
-    padding-right: 18px;
+    margin-bottom: -11px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -17,8 +15,8 @@
         font-size: 27px;
         line-height: 32.68px;
         margin-top: 22.25px;
-        margin-bottom: 14px;
-        padding-right: 10px;
-        justify-self: center;
+        margin-bottom: 0;
+        padding-right: 0;
+        text-align: center;
     }
 }

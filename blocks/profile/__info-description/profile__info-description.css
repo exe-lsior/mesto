@@ -5,7 +5,7 @@
     line-height: 21.78px;
     color: white;
     margin-top: 0;
-    margin-bottom: 25px;
+    margin-bottom: 0;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -15,6 +15,7 @@
     .profile__info-description {
         font-size: 14px;
         line-height: 16.94px;
-        margin-bottom: 36px;
+        margin-bottom: 0;
+        text-align: center;
     }
 }
