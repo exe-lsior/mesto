@@ -47,5 +47,3 @@ popUpOpen.addEventListener('click', popUpActive);
 
 popUpClose.addEventListener('click', popUpRemove);
 
-
-

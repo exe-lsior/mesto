@@ -22,8 +22,8 @@
 @import url(../blocks/element/element.css);
 @import url(../blocks/element/__image/element__image.css);
 @import url(../blocks/element/__main/element__main.css);
-@import url(../blocks/element/__main/element__main-name.css);
-@import url(../blocks/element/__main/element__main-like.css);
+@import url(../blocks/element/__main-name/element__main-name.css);
+@import url(../blocks/element/__main-like/element__main-like.css);
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__text/footer__text.css);
