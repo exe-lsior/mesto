@@ -1,5 +1,6 @@
 .element{
-    max-height: 361px;
+    display: grid;
+    grid-template-rows: 282px 79px;
     max-width: 282px;
     border-radius: 10px;
     overflow: hidden;

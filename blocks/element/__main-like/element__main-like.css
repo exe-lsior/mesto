@@ -4,9 +4,10 @@
     padding: 0;
     background-color: white;
     height: 19px;
+    cursor: pointer;
 }
 .element__main-like:hover {
-    opacity: 60%;
+    opacity: 50%;
 }
 
 .element__main-like:active {

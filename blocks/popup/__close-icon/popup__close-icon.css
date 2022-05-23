@@ -4,6 +4,8 @@
     top: -40px;
     right: -40px;
     cursor: pointer;
+    background-color: rgb(0, 0, 0, 0);
+    border: none;
 }
 
 .popup__close-icon:hover {

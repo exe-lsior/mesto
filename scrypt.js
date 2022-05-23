@@ -3,34 +3,27 @@ let popUp = document.getElementById('popup');
 let popUpOpen = document.getElementById('open_popup');
 let popUpClose = document.getElementById('close_popup');
 
-//savebutton
-let sendForm = document.getElementById('save-button');
+//submit form
+let sendForm = document.getElementById('popup-form');
 
 //elements
 let formElement = document.querySelector('.profile__info');
 let nameUser = document.querySelector('.profile__info-name');
 let jobUser  = document.querySelector('.profile__info-description');
-let nameInput = document.querySelector('.popup__form-name');
-let jobInput  = document.querySelector('.popup__form-description');
+let nameInput = document.getElementById('popup_name');
+let jobInput  = document.getElementById('popup_description');
 
 
 
 function popUpActive () {
-    popUp.classList.add('active');
-    nameInput.value = nameUser.innerText;
-    jobInput.value = jobUser.innerText;
+    popUp.classList.add('popup_active');
+    nameInput.value = nameUser.textContent;
+    jobInput.value = jobUser.textContent;
 };
 
 function popUpRemove () {
-    popUp.classList.remove('active');
+    popUp.classList.remove('popup_active');
 };
-
-function saveForm () {
-    nameInput.innerText = nameUser.value;
-    jobInput.innerText = jobUser.value;
-    formSubmitHandler(evt);
-}
-
 
 function formSubmitHandler (evt) {
     evt.preventDefault(); 
@@ -41,7 +34,7 @@ function formSubmitHandler (evt) {
     popUpRemove();
 };
 
-sendForm.addEventListener('click', formSubmitHandler);
+sendForm.addEventListener('submit', formSubmitHandler);
 
 popUpOpen.addEventListener('click', popUpActive);
 
