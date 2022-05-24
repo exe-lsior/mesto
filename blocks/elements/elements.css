@@ -5,7 +5,7 @@
     gap: 16px 20px;
     align-items: center;
     grid-template-columns: 1fr 1fr 1fr;
-    max-width: 896px;
+    max-width: 880px;
 }
 
 @media screen and (max-width: 897px) {

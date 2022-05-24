@@ -3,16 +3,18 @@
     display: grid;
     grid-template-areas:
         "1 2" "3 4";
-    grid-template-rows: 1 fr 1fr;
+    grid-template-rows: 39px 1fr;
     column-gap: 18px;
     row-gap: 16px;
     align-items: center;
-    max-height: 73px;
 }
 
-@media screen and (max-width: 879px) {
+@media screen and (max-width: 897px) {
     .profile__info {
         column-gap: 10px;
+        grid-template-rows: 26px 1fr;
         row-gap: 14px;
+        margin-top: 26px;
+        margin-left: 0;
     }
 }

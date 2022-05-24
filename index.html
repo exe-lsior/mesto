@@ -18,66 +18,63 @@
                 <img class="profile__image" src="./images/image.jpg" alt="профиль">
                 <div class="profile__info">
                     <h1 class="profile__info-name">Жак-Ив Кусто</h1>
-                    <button class="profile__button-edit" type="submit" id="open_popup"></button>
+                    <button class="profile__button-edit" type="button" id="open_popup"></button>
                     <p class="profile__info-description">Исследователь океана</p>
                 </div>
-                <button class="profile__button-add" type="submit"><img src="./images/add-button.svg" alt="добавить"></button>
+                <button class="profile__button-add" type="button"></button>
             </section>
             <section class="elements">
                 <div class="element">
                     <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаево-Черкесия">
                     <div class="element__main">
                         <h2 class="element__main-name">Карачаево-Черкесия</h2>
-                        <button class="element__main-like" type="submit"><img src="./images/like-button.svg" alt="лайк"></button>
+                        <button class="element__main-like" type="button"><img src="./images/like-button.svg" alt="лайк"></button>
                     </div>
                 </div>
                 <div class="element">
                     <img class="element__image" src="./images/dombai.jpg" alt="Домбай">
                     <div class="element__main">
                         <h2 class="element__main-name">Домбай</h2>
-                        <button class="element__main-like" type="submit"><img src="./images/like-button.svg" alt="лайк"></button>
+                        <button class="element__main-like" type="button"><img src="./images/like-button.svg" alt="лайк"></button>
                     </div>
                 </div>
                 <div class="element">
                     <img class="element__image" src="./images/elbrus.jpg" alt="Эльбрус">
                     <div class="element__main">
                         <h2 class="element__main-name">Гора Эльбрус</h2>
-                        <button class="element__main-like" type="submit"><img src="./images/like-button.svg" alt="лайк"></button>
+                        <button class="element__main-like" type="button"><img src="./images/like-button.svg" alt="лайк"></button>
                     </div>
                 </div>
                 <div class="element">
                     <img class="element__image" src="./images/dombai.jpg" alt="Домбай">
                     <div class="element__main">
                         <h2 class="element__main-name">Добмай</h2>
-                        <button class="element__main-like" type="submit"><img src="./images/like-button.svg" alt="лайк"></button>
+                        <button class="element__main-like" type="button"><img src="./images/like-button.svg" alt="лайк"></button>
                     </div>
                 </div>
                 <div class="element">
                     <img class="element__image" src="./images/elbrus.jpg" alt="Эльбрус">
                     <div class="element__main">
                         <h2 class="element__main-name">Гора Эльбрус</h2>
-                        <button class="element__main-like" type="submit"><img src="./images/like-button.svg" alt="лайк"></button>
+                        <button class="element__main-like" type="button"><img src="./images/like-button.svg" alt="лайк"></button>
                     </div>
                 </div>
                 <div class="element">
                     <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаево-Черкесия">
                     <div class="element__main">
                         <h2 class="element__main-name">Карачаево-Черкесия</h2>
-                        <button class="element__main-like" type="submit"><img src="./images/like-button.svg" alt="лайк"></button>
+                        <button class="element__main-like" type="button"><img src="./images/like-button.svg" alt="лайк"></button>
                     </div>
                 </div>
             </section>
-    
             <div class="popup" id="popup">
                 <div class="popup__container">
-                    <button class="popup__close-icon" type="submit">
-                        <img src="./images/close-icon.svg" id="close_popup" alt="закрыть">
-                    </button>
+                    <button class="popup__close-icon" type="button" id="close_popup"></button>
                     <h2 class="popup__label">Редактировать профиль</h2>
                     <form id="popup-form" name="popup_form">
-                        <input type="text" class="popup__form" id="popup_name">
-                        <input type="text" class="popup__form" id="popup_description">
-                        <button class="popup__save-button popup__save-text" id="save-button" type="submit">Сохранить</button>
+                        <input type="text" class="popup__form" id="popup_name" name="popup_name">
+                        <input type="text" class="popup__form" id="popup_description" name="popup_description">
+                        <button class="popup__save-button" id="save-button" type="submit">Сохранить</button>
                     </form>
                 </div>
             </div>
@@ -86,7 +83,7 @@
     <footer class="footer">
         <p class="footer__text">© 2022 Mesto Russia</p>
     </footer>
-    <script src="./scrypt.js"></script>
+    <script src="./scripts/script.js"></script>
 </body>
 
 </html>
