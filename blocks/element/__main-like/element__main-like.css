@@ -10,6 +10,7 @@
     opacity: 50%;
 }
 
-.element__main-like:active {
-    background: url(../../../images/like-button-black.svg) center no-repeat;
+
+.element__main-like:focus {
+    opacity: 100%;
 }
