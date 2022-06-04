@@ -1,4 +1,4 @@
-.popup__card-container {
+.popup__element {
     display: grid;
     row-gap: 10px;
     position: relative;
