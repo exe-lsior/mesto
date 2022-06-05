@@ -24,16 +24,7 @@
                 <button class="profile__button-add" type="button" id="open_el_popup"></button>
             </section>
             <section class="elements" id="elements">
-                <template  id="template">
-                    <div class="element">
-                        <img class="element__image" id="img">
-                        <div class="element__main">
-                            <h2 class="element__main-name" id="elName"></h2>
-                            <button class="element__main-like" type="button" id="like"><img src="./images/like-button.svg" alt="лайк"></button>
-                        </div>
-                        <button class="element__delete" type="button" id="delete"></button>
-                    </div>
-                </template>
+                
             </section>
         </main>
     </div>
@@ -43,13 +34,13 @@
 
     <!--Profile popup-->
 
-    <div class="popup" id="popup">
+    <div class="popup" id="popup-profile">
         <div class="popup__container">
             <button class="popup__close-icon" type="button" id="close_popup"></button>
             <h2 class="popup__label">Редактировать профиль</h2>
-            <form id="popup-form" name="popup_form">
-                <input type="text" class="popup__form" id="popup_name" name="popup_name">
-                <input type="text" class="popup__form" id="popup_description" name="popup_description">
+            <form id="popup-form" name="popup_form" class="popup__form">
+                <input type="text" class="popup__input" id="popup_name" name="popup_name">
+                <input type="text" class="popup__input" id="popup_description" name="popup_description">
                 <button class="popup__save-button" id="save-button" type="submit">Сохранить</button>
             </form>
         </div>
@@ -61,9 +52,9 @@
         <div class="popup__container">
             <button class="popup__close-icon" type="button" id="el_close_popup"></button>
             <h2 class="popup__label">Новое место</h2>
-            <form id="el-popup-form" name="add_card_form">
-                <input type="text" placeholder="Название" class="popup__form" id="place_name" name="place_name">
-                <input type="text" placeholder="Ссылка на картинку" class="popup__form" id="place_link" name="place_link">
+            <form id="el-popup-form" name="add_card_form" class="popup__form">
+                <input type="text" placeholder="Название" class="popup__input" id="place_name" name="place_name">
+                <input type="text" placeholder="Ссылка на картинку" class="popup__input" id="place_link" name="place_link">
                 <button class="popup__save-button" id="save_button" type="submit">Сохранить</button>
             </form>
         </div>
@@ -77,6 +68,18 @@
           <p class="popup__description" id="popup-description"></p>
         </div>
     </div>
+
+    <!--Template-->
+    <template  id="template">
+        <div class="element">
+            <img class="element__image" id="img">
+            <div class="element__main">
+                <h2 class="element__main-name" id="elName"></h2>
+                <button class="element__main-like" type="button" id="like"><img src="./images/like-button.svg" alt="лайк"></button>
+            </div>
+            <button class="element__delete" type="button" id="delete"></button>
+        </div>
+    </template>
 
     <script src="./scripts/script.js"></script>
 </body>
