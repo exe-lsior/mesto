@@ -1,43 +1,43 @@
-const initialCards = [
-    {
-      name: 'Татуин',
-      link: 'https://img4.goodfon.com/wallpaper/nbig/3/ec/return-to-tatooine-robot-sushchestva-postroiki.jpg'
+ const initialCards = [
+  {
+    name: 'Татуин',
+    link: 'https://img4.goodfon.com/wallpaper/nbig/3/ec/return-to-tatooine-robot-sushchestva-postroiki.jpg'
+  },
+  {
+    name: 'Джеонозис',
+    link: 'https://gameranx.com/wp-content/uploads/2018/11/databank_geonosis_01_169_1d04e086-720x360.jpg'
+  },
+  {
+    name: 'Корусант',
+    link: 'https://static1.cbrimages.com/wordpress/wp-content/uploads/2017/02/Star-Wars-Coruscant.jpg'
+  },
+  {
+    name: 'Мустафар',
+    link: 'https://www.centax.ru/images/movies/rogue/mustafar-landscape-big.jpeg'
+  },
+  {
+      name: 'Звезда смерти',
+      link: 'https://images.alphacoders.com/107/107763.jpg'
     },
-    {
-      name: 'Джеонозис',
-      link: 'https://gameranx.com/wp-content/uploads/2018/11/databank_geonosis_01_169_1d04e086-720x360.jpg'
-    },
-    {
-      name: 'Корусант',
-      link: 'https://static1.cbrimages.com/wordpress/wp-content/uploads/2017/02/Star-Wars-Coruscant.jpg'
-    },
-    {
-      name: 'Мустафар',
-      link: 'https://www.centax.ru/images/movies/rogue/mustafar-landscape-big.jpeg'
-    },
-    {
-        name: 'Звезда смерти',
-        link: 'https://images.alphacoders.com/107/107763.jpg'
-      },
-    {
-      name: 'Эндор',
-      link: 'https://34travel.me/media/upload/images/2019/december/star-wars/1a.jpg'
-    }
-  ];
+  {
+    name: 'Эндор',
+    link: 'https://34travel.me/media/upload/images/2019/december/star-wars/1a.jpg'
+  }
+];
 
 //popup
 const popUpProfile = document.getElementById('popup-profile');
 const popUpElement = document.getElementById('el_popup');
 const popUpCard = document.getElementById('popup_card');
-const popUpOpen = document.getElementById('open_popup');
+const buttonPopupProfileOpen = document.getElementById('open_popup');
 const elementPopUpOpen = document.getElementById('open_el_popup');
-const popUpClose = document.getElementById('close_popup');
+const buttonPopUpProfileClose = document.getElementById('close_popup');
 const elementPopUpClose = document.getElementById('el_close_popup');
 const cardPopUpClose = document.getElementById('cd_close_popup');
 
 //submit form
 const profileElement = document.getElementById('popup-form');
-const cardElement = document.getElementById('el-popup-form');
+const cardForm = document.getElementById('el-popup-form');
 
 //popup elements
 const nameUser = document.querySelector('.profile__info-name');
@@ -46,168 +46,133 @@ const nameInput = document.getElementById('popup_name');
 const jobInput  = document.getElementById('popup_description');
 const placeInput = document.getElementById('place_name');
 const linkInput = document.getElementById('place_link');
-const popUpDsc = document.querySelector('.popup__description');
-const popUpImg = document.querySelector('.popup__image');
+const popUpDescription = document.querySelector('.popup__description');
+const popUpImage = document.querySelector('.popup__image');
 
 
 //шаблон и DOM
 const cardsContainer = document.getElementById('elements');
-const elemTemplate = document.getElementById('template');
+const elementTemplate = document.getElementById('template');
 
 //открытие попапа
 function activatePopUp(popup) {
-  popup.classList.add('popup_active');
+popup.classList.add('popup_active');
 };
 
 //открытие попапа user
 function openProfilePopup() {
-  nameInput.value = nameUser.textContent;
-  jobInput.value = jobUser.textContent;
-  activatePopUp(popUpProfile);
+nameInput.value = nameUser.textContent;
+jobInput.value = jobUser.textContent;
+activatePopUp(popUpProfile);
 }
 
 //закрытие попапа 
 function closePopUp(popup) {
-  popup.classList.remove('popup_active');
+popup.classList.remove('popup_active');
 } ;
 
 //закрытие попапа addElement
-function elementPopUpRemove () {
-    closePopUp(popUpElement)
-    placeInput.value = '';
-    linkInput.value = '';
+function removeElementPopUp () {
+  closePopUp(popUpElement);
 };
 
 //отправка формы addElement
-function elFormSubmitHandler (evt) {
-    evt.preventDefault(); 
-    
-    const el = elemTemplate.content.cloneNode(true);
+function createElement (evt) {
+  evt.preventDefault();
+  
+  renderCard({name:placeInput.value, link:linkInput.value});
 
-    const elImgage = el.querySelector('.element__image')
-    const elDescription = el.querySelector('.element__main-name')
-
-    elDescription.textContent = placeInput.value;
-    elImgage.src = linkInput.value;
-    elImgage.alt = placeInput.value;
-    
-    function renderCard(createCard) {
-      createCard.prepend(el);
-    }
-    
-    renderCard(cardsContainer);
-
-    placeInput.value = '';
-    linkInput.value = '';
-
-    closePopUp(popUpElement);
-
-    //лайк
-    const likebtn = document.getElementById('like');
-    //кнопка лайк
-    likebtn.addEventListener('click', cardLike);
-
-    //корзина
-    const deleteBtn = document.getElementById('delete');
-    //удаление карточки
-    deleteBtn.addEventListener('click', deleteCard);
-
-    const cdImg = document.querySelector('.element__image')
-    //Кнопка открытия popUpCard
-    elImgage.addEventListener('click', cdPopUpOpen);
-
-    //функция открытия popUpCard
-    function cdPopUpOpen () {
-        
-        popUpDsc.textContent = elDescription.textContent;
-        popUpImg.src = elImgage.src;
-        popUpImg.alt = elDescription.value;
-        
-        popUpCard.classList.add('popup_active');
-    }
-    
+  placeInput.value = '';
+  linkInput.value = '';
+  
+  closePopUp(popUpElement);
 };
 
 //переключение кнопки лайк
-function cardLike (evt)  {
-    evt.target.classList.toggle('like_active');
+function likeCard (evt)  {
+  evt.target.classList.toggle('like_active');
 };
 
-//кнопка отправки формы User
-cardElement.addEventListener('submit', elFormSubmitHandler);
+//отправка формы user
+function submitUserForm (evt) {
+  evt.preventDefault();
 
-function formSubmitHandler (evt) {
-    evt.preventDefault(); 
+  nameUser.textContent = nameInput.value;
+  jobUser.textContent = jobInput.value;
 
-    nameUser.textContent = nameInput.value; 
-    jobUser.textContent = jobInput.value;
-
-    closePopUp(popUpProfile);
+  closePopUp(popUpProfile);
 };
-
-//кнопка отправки формы User
-profileElement.addEventListener('submit', formSubmitHandler);
 
 //функция удаления карточки
 function deleteCard (evt) {
-    evt.target.closest('.element').remove();
+  evt.target.closest('.element').remove();
 }
 
+const createCard = (card) => {
+  const { name, link } = card; // это деструктурирующее присваивание.
 
+  const cardElement = elementTemplate.content.cloneNode(true);// получаем шаблон
 
-//цикл добавления карточек через массив
-initialCards.forEach (function (element) {
-    const el = elemTemplate.content.cloneNode(true);
+  const imageElement = cardElement.querySelector('.element__image');
+  const descriptionElement = cardElement.querySelector('.element__main-name');
 
-    const elImgage = el.querySelector('.element__image')
-    const elDescription = el.querySelector('.element__main-name')
+  descriptionElement.textContent = name;
+  imageElement.alt = name;
+  imageElement.src = link;
+  
 
-    el.querySelector('.element__image').src = element.link;
-    el.querySelector('.element__main-name').textContent = element.name;
+  //лайк
+  const likebtn = cardElement.querySelector('.element__main-like');
+  //кнопка лайк
+  likebtn.addEventListener('click', likeCard);
+  
+  //корзина
+  const deleteBtn = cardElement.querySelector('.element__delete');
+  //удаление карточки
+  deleteBtn.addEventListener('click', deleteCard);
 
-    function renderCard(createCard) {
-      createCard.prepend(el);
-    }
+  imageElement.addEventListener('click', cardPopUpOpen);
 
-    renderCard(cardsContainer);
-    
-    //корзина
-    const deleteBtn = document.getElementById('delete');
-    //удаление карточки
-    deleteBtn.addEventListener('click', deleteCard);
+  function cardPopUpOpen () {
+      
+    popUpDescription.textContent = descriptionElement.textContent;
+    popUpImage.src = imageElement.src;
+    popUpImage.alt = imageElement.value;
+      
+    activatePopUp(popUpCard);
+  } 
+ //Пользуемся полученными из деструктурирования  
+  // переменными:
+  
+  // Завершаем формирование DOM-узла карточки, вешаем слушатели
+  return cardElement;
+};
 
-    //лайк
-    const likebtn = document.getElementById('like');
-    //кнопка лайк
-    likebtn.addEventListener('click', cardLike);
-    
+function renderCard (card) {
+  cardsContainer.prepend(createCard(card));
+};
 
-    function cardPopUpOpen () {
-        
-        popUpDsc.textContent = elDescription.textContent;
-        popUpImg.src = elImgage.src;
-        popUpImg.alt = elDescription.value;
-        
-        popUpCard.classList.add('popup_active');
-    }
-    
-    const msImg = document.querySelector('.element__image');
-    msImg.addEventListener('click', cardPopUpOpen);
-    
-})
+initialCards.forEach((card) => {
+  renderCard(card);
+});
 
+//кнопка создания карточки
+cardForm.addEventListener('submit', createElement);
+
+//кнопка отправки формы User
+profileElement.addEventListener('submit', submitUserForm);
+
+//кнопка открытия попапа User
+buttonPopupProfileOpen.addEventListener('click', () => openProfilePopup());
 
 //кнопка закрытия попапа User
-popUpClose.addEventListener('click', () => closePopUp(popUpProfile));
+buttonPopUpProfileClose.addEventListener('click', () => closePopUp(popUpProfile));
 
 //кнопка закрытия попапа addElement
-elementPopUpClose.addEventListener('click', () => elementPopUpRemove ());
+elementPopUpClose.addEventListener('click', () => removeElementPopUp());
 
 //Кнопка закрытия popUpCard
 cardPopUpClose.addEventListener('click', () => closePopUp(popUpCard));
 
 //кнопка открытия попапа addElement
 elementPopUpOpen.addEventListener('click', () => activatePopUp(popUpElement));
-
-//кнопка открытия попапа User
-popUpOpen.addEventListener('click', () => openProfilePopup());
