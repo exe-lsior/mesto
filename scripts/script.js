@@ -119,7 +119,6 @@ const createCard = (card) => {
   descriptionElement.textContent = name;
   imageElement.alt = name;
   imageElement.src = link;
-  
 
   //лайк
   const likebtn = cardElement.querySelector('.element__main-like');
@@ -135,9 +134,9 @@ const createCard = (card) => {
 
   function cardPopUpOpen () {
       
-    popUpDescription.textContent = descriptionElement.textContent;
-    popUpImage.src = imageElement.src;
-    popUpImage.alt = imageElement.value;
+    popUpDescription.textContent = name; 
+    popUpImage.src = link; 
+    popUpImage.alt = name; 
       
     activatePopUp(popUpCard);
   } 
