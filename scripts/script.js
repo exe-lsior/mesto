@@ -43,10 +43,10 @@ const cardForm = document.getElementById('el-popup-form');
 //popup elements
 const nameUser = document.querySelector('.profile__info-name');
 const jobUser  = document.querySelector('.profile__info-description');
-const nameInput = document.getElementById('popup__name');
-const jobInput  = document.getElementById('popup__description');
-const placeInput = document.getElementById('place__name');
-const linkInput = document.getElementById('place__link');
+const nameInput = document.getElementById('name');
+const jobInput  = document.getElementById('description');
+const placeInput = document.getElementById('place');
+const linkInput = document.getElementById('link');
 const popUpDescription = document.querySelector('.popup__description');
 const popUpImage = document.querySelector('.popup__image');
 
