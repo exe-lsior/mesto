@@ -5,6 +5,9 @@
     flex-direction: column;
     border-radius: 10px;
     position: relative;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
 }
 
 @media screen and (max-width: 897px) {

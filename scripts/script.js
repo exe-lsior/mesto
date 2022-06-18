@@ -25,7 +25,7 @@
   }
 ];
 
-//popup
+//popup 
 const popUpProfile = document.getElementById('popup-profile');
 const popUpElement = document.getElementById('el_popup');
 const popUpCard = document.getElementById('popup_card');
@@ -37,15 +37,16 @@ const cardPopUpClose = document.getElementById('cd_close_popup');
 
 //submit form
 const profileElement = document.getElementById('popup-form');
+const formInput = profileElement.querySelector('.popup__input');
 const cardForm = document.getElementById('el-popup-form');
 
 //popup elements
 const nameUser = document.querySelector('.profile__info-name');
 const jobUser  = document.querySelector('.profile__info-description');
-const nameInput = document.getElementById('popup_name');
-const jobInput  = document.getElementById('popup_description');
-const placeInput = document.getElementById('place_name');
-const linkInput = document.getElementById('place_link');
+const nameInput = document.getElementById('popup__name');
+const jobInput  = document.getElementById('popup__description');
+const placeInput = document.getElementById('place__name');
+const linkInput = document.getElementById('place__link');
 const popUpDescription = document.querySelector('.popup__description');
 const popUpImage = document.querySelector('.popup__image');
 
@@ -59,17 +60,29 @@ function activatePopUp(popup) {
 popup.classList.add('popup_active');
 };
 
+// закрываем поп-ап нажатием на overlay
+function closeByOverlay(evt) {
+  if (evt.target === evt.currentTarget) {
+    const overlay = document.querySelector('.popup_active');
+    closePopUp(overlay);
+  }
+};
+
 //открытие попапа user
 function openProfilePopup() {
 nameInput.value = nameUser.textContent;
 jobInput.value = jobUser.textContent;
 activatePopUp(popUpProfile);
+popUpProfile.addEventListener('click', closeByOverlay);
 }
 
 //закрытие попапа 
 function closePopUp(popup) {
 popup.classList.remove('popup_active');
-} ;
+//делаем кнопку неактивной, после закрытия попапа
+const button = document.querySelector('.popup__button')
+submitButtonInactive(button);
+};
 
 //закрытие попапа addElement
 function removeElementPopUp () {
@@ -87,6 +100,8 @@ function createElement (evt) {
   
   closePopUp(popUpElement);
 };
+
+popUpElement.addEventListener('click', closeByOverlay);
 
 //переключение кнопки лайк
 function likeCard (evt)  {
@@ -140,9 +155,8 @@ const createCard = (card) => {
       
     activatePopUp(popUpCard);
   } 
- //Пользуемся полученными из деструктурирования  
-  // переменными:
-  
+  popUpCard.addEventListener('click', closeByOverlay);
+
   // Завершаем формирование DOM-узла карточки, вешаем слушатели
   return cardElement;
 };
@@ -154,6 +168,15 @@ function renderCard (card) {
 initialCards.forEach((card) => {
   renderCard(card);
 });
+
+//закрытие поп-апов нажатием Escape
+document.addEventListener('keydown', function (evt) {
+  if (evt.key === 'Escape') {
+    closePopUp(popUpCard);
+    closePopUp(popUpProfile);
+    closePopUp(popUpElement);
+  }
+}); 
 
 //кнопка создания карточки
 cardForm.addEventListener('submit', createElement);

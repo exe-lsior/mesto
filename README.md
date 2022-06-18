@@ -1,6 +1,6 @@
 # Проект: Место
 
-### Проектная работа #5 mesto
+### Проектная работа #6 mesto
 
 * Figma;
 * Картинки;
@@ -9,10 +9,12 @@
 * Возможность отправки формы;
 * Возможность загрузки картинок;
 * Возможность использовать кнопки;
+* Возможность взаимодействовать при помощи клавиатуры;
+* Валидация форм
 
 **Figma**
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=50160%3A2)
+* [Ссылка на макет в Figma](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=1124%3A73)
 
 * [Ссылка на сам проект](https://exe-lsior.github.io/mesto/) 
 
