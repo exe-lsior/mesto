@@ -1,8 +1,3 @@
-const form = document.querySelector('.popup__form');
-const formError = form.querySelector('.popup__error')
-
-
-//
 const classes = ({
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -60,8 +55,8 @@ function submitButtonActive(buttonElement) {
   buttonElement.disabled = false;
 };
 
-const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll('.popup__form'));
+const enableValidation = (classes) => {
+  const formList = Array.from(document.querySelectorAll(classes.formSelector));
   formList.forEach((formElement) => {
     formElement.addEventListener('submit', function(evt){
       evt.preventDefault();
@@ -70,7 +65,7 @@ const enableValidation = () => {
   });
 };
 
-enableValidation(classes.formSelector);
+enableValidation(classes);
 
 
 function hasInvalidInput(inputList) {

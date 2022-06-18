@@ -49,6 +49,8 @@ const placeInput = document.getElementById('place');
 const linkInput = document.getElementById('link');
 const popUpDescription = document.querySelector('.popup__description');
 const popUpImage = document.querySelector('.popup__image');
+const elementSaveButton = document.getElementById('save_button')
+const userSaveButton = document.getElementById('save-button')
 
 
 //шаблон и DOM
@@ -58,13 +60,13 @@ const elementTemplate = document.getElementById('template');
 //открытие попапа
 function activatePopUp(popup) {
 popup.classList.add('popup_active');
+document.addEventListener('keydown', closeWithEscape);
 };
 
 // закрываем поп-ап нажатием на overlay
 function closeByOverlay(evt) {
   if (evt.target === evt.currentTarget) {
-    const overlay = document.querySelector('.popup_active');
-    closePopUp(overlay);
+    closePopUp(evt.target);
   }
 };
 
@@ -73,15 +75,13 @@ function openProfilePopup() {
 nameInput.value = nameUser.textContent;
 jobInput.value = jobUser.textContent;
 activatePopUp(popUpProfile);
-popUpProfile.addEventListener('click', closeByOverlay);
+submitButtonInactive(userSaveButton);
 }
 
 //закрытие попапа 
 function closePopUp(popup) {
 popup.classList.remove('popup_active');
-//делаем кнопку неактивной, после закрытия попапа
-const button = document.querySelector('.popup__button')
-submitButtonInactive(button);
+document.addEventListener('keydown', closeWithEscape);
 };
 
 //закрытие попапа addElement
@@ -94,14 +94,16 @@ function createElement (evt) {
   evt.preventDefault();
   
   renderCard({name:placeInput.value, link:linkInput.value});
-
+  
   placeInput.value = '';
   linkInput.value = '';
   
   closePopUp(popUpElement);
-};
 
-popUpElement.addEventListener('click', closeByOverlay);
+  submitButtonInactive(elementSaveButton);
+
+  console.log(saveButton)
+};
 
 //переключение кнопки лайк
 function likeCard (evt)  {
@@ -155,8 +157,7 @@ const createCard = (card) => {
       
     activatePopUp(popUpCard);
   } 
-  popUpCard.addEventListener('click', closeByOverlay);
-
+ 
   // Завершаем формирование DOM-узла карточки, вешаем слушатели
   return cardElement;
 };
@@ -169,14 +170,18 @@ initialCards.forEach((card) => {
   renderCard(card);
 });
 
-//закрытие поп-апов нажатием Escape
-document.addEventListener('keydown', function (evt) {
+
+function closeWithEscape(evt) {
   if (evt.key === 'Escape') {
-    closePopUp(popUpCard);
-    closePopUp(popUpProfile);
-    closePopUp(popUpElement);
+    const popUpActive = document.querySelector('.popup_active');
+    closePopUp(popUpActive);
   }
-}); 
+}
+
+//слушатели для закрытия кликом по оверлею
+popUpElement.addEventListener('click', closeByOverlay);
+popUpCard.addEventListener('click', closeByOverlay);
+popUpProfile.addEventListener('click', closeByOverlay);
 
 //кнопка создания карточки
 cardForm.addEventListener('submit', createElement);
