@@ -101,8 +101,6 @@ function createElement (evt) {
   closePopUp(popUpElement);
 
   submitButtonInactive(elementSaveButton);
-
-  console.log(saveButton)
 };
 
 //переключение кнопки лайк

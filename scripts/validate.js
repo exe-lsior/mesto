@@ -14,33 +14,33 @@ const showInputError = (formElement, inputElement, errorMessage) => {
     errorElement.classList.add('popup__error_visible');
 };
   
-const hideInputError = (formElement, inputElement) => {
+const hideInputError = (formElement, inputElement, classes) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.remove('popup__input_type_error');
-    errorElement.classList.remove('popup__error_visible');
+    inputElement.classList.remove(classes.inputErrorClass);
+    errorElement.classList.remove(classes.errorClass);
     errorElement.textContent = '';
 };
 
 
 const checkInputValidity = (formElement, inputElement) => {
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);
+    showInputError(formElement, inputElement, classes, inputElement.validationMessage);
   } else {
-    hideInputError(formElement, inputElement);
+    hideInputError(formElement, inputElement, classes);
   }
 };
 
-function setEventListeners(formElement) {
-  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-  const buttonElement = formElement.querySelector('.popup__button');
+const setEventListeners = (formElement, classes) => {
+  const inputList = Array.from(formElement.querySelectorAll(classes.inputSelector));
+  const buttonElement = formElement.querySelector(classes.submitButtonSelector);
 
-  toggleButtonState (inputList, buttonElement);
+  toggleButtonState (inputList, buttonElement, classes.inactiveButtonClass);
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
-     checkInputValidity(formElement, inputElement);
+     checkInputValidity(formElement, inputElement, classes);
 
-     toggleButtonState (inputList, buttonElement, classes.inactiveButtonClass);
+     toggleButtonState(inputList, buttonElement, classes.inactiveButtonClass);
     });
   });
 };
@@ -61,7 +61,7 @@ const enableValidation = (classes) => {
     formElement.addEventListener('submit', function(evt){
       evt.preventDefault();
     });
-    setEventListeners(formElement);
+    setEventListeners(formElement, classes);
   });
 };
 
