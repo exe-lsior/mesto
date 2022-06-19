@@ -7,11 +7,11 @@ const classes = ({
   errorClass: 'popup__error_visible'
 }); 
 
-const showInputError = (formElement, inputElement, errorMessage) => {
+const showInputError = (formElement, inputElement, errorMessage, classes) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.add('popup__input_type_error');
+    inputElement.classList.add(classes.inputErrorClass);
     errorElement.textContent = errorMessage;
-    errorElement.classList.add('popup__error_visible');
+    errorElement.classList.add(classes.errorClass);
 };
   
 const hideInputError = (formElement, inputElement, classes) => {
