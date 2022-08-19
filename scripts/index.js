@@ -1,3 +1,6 @@
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
+
  const initialCards = [
   {
     name: 'Татуин',
@@ -25,6 +28,15 @@
   }
 ];
 
+const classes = ({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+}); 
+
 //popup 
 const popUpProfile = document.getElementById('popup-profile');
 const popUpElement = document.getElementById('el_popup');
@@ -37,7 +49,7 @@ const cardPopUpClose = document.getElementById('cd_close_popup');
 
 //submit form
 const profileElement = document.getElementById('popup-form');
-const formInput = profileElement.querySelector('.popup__input');
+//const formInput = profileElement.querySelector('.popup__input');
 const cardForm = document.getElementById('el-popup-form');
 
 //popup elements
@@ -50,12 +62,12 @@ const linkInput = document.getElementById('link');
 const popUpDescription = document.querySelector('.popup__description');
 const popUpImage = document.querySelector('.popup__image');
 const elementSaveButton = document.getElementById('save_button')
-const userSaveButton = document.getElementById('save-button')
+//const userSaveButton = document.getElementById('save-button')
 
 
 //шаблон и DOM
 const cardsContainer = document.getElementById('elements');
-const elementTemplate = document.getElementById('template');
+//const elementTemplate = document.getElementById('template');
 
 //открытие попапа
 function activatePopUp(popup) {
@@ -63,6 +75,13 @@ popup.classList.add('popup_active');
 document.addEventListener('keydown', closeWithEscape);
 };
 
+// открываем поп-ап нажатием на картинку
+const openPlacePopUp = (name, link) => {
+  popUpImage.src = link;
+  popUpImage.alt = name;
+  popUpDescription.textContent = name;
+  activatePopUp(popUpCard);
+}
 // закрываем поп-ап нажатием на overlay
 function closeByOverlay(evt) {
   if (evt.target === evt.currentTarget) {
@@ -72,10 +91,9 @@ function closeByOverlay(evt) {
 
 //открытие попапа user
 function openProfilePopup() {
-nameInput.value = nameUser.textContent;
-jobInput.value = jobUser.textContent;
-activatePopUp(popUpProfile);
-submitButtonInactive(userSaveButton);
+  loadUserData();
+  activatePopUp(popUpProfile);
+  popUpProfileValidation.resetError();
 }
 
 //закрытие попапа 
@@ -103,10 +121,12 @@ function createElement (evt) {
   submitButtonInactive(elementSaveButton);
 };
 
-//переключение кнопки лайк
-function likeCard (evt)  {
-  evt.target.classList.toggle('like_active');
+//загрузить текушие данные
+const loadUserData = () => {
+  nameInput.value = nameUser.textContent;
+  jobInput.value = jobUser.textContent;
 };
+
 
 //отправка формы user
 function submitUserForm (evt) {
@@ -114,51 +134,11 @@ function submitUserForm (evt) {
 
   nameUser.textContent = nameInput.value;
   jobUser.textContent = jobInput.value;
-
+  
   closePopUp(popUpProfile);
 };
 
-//функция удаления карточки
-function deleteCard (evt) {
-  evt.target.closest('.element').remove();
-}
-
-const createCard = (card) => {
-  const { name, link } = card; // это деструктурирующее присваивание.
-
-  const cardElement = elementTemplate.content.cloneNode(true);// получаем шаблон
-
-  const imageElement = cardElement.querySelector('.element__image');
-  const descriptionElement = cardElement.querySelector('.element__main-name');
-
-  descriptionElement.textContent = name;
-  imageElement.alt = name;
-  imageElement.src = link;
-
-  //лайк
-  const likebtn = cardElement.querySelector('.element__main-like');
-  //кнопка лайк
-  likebtn.addEventListener('click', likeCard);
-  
-  //корзина
-  const deleteBtn = cardElement.querySelector('.element__delete');
-  //удаление карточки
-  deleteBtn.addEventListener('click', deleteCard);
-
-  imageElement.addEventListener('click', cardPopUpOpen);
-
-  function cardPopUpOpen () {
-      
-    popUpDescription.textContent = name; 
-    popUpImage.src = link; 
-    popUpImage.alt = name; 
-      
-    activatePopUp(popUpCard);
-  } 
- 
-  // Завершаем формирование DOM-узла карточки, вешаем слушатели
-  return cardElement;
-};
+const createCard = (card) => new Card(card, '.template', openPlacePopUp).generateCard();
 
 function renderCard (card) {
   cardsContainer.prepend(createCard(card));
@@ -201,3 +181,10 @@ cardPopUpClose.addEventListener('click', () => closePopUp(popUpCard));
 
 //кнопка открытия попапа addElement
 elementPopUpOpen.addEventListener('click', () => activatePopUp(popUpElement));
+
+//валидация 
+const popUpElementValidation = new FormValidator(classes, popUpElement);
+const popUpProfileValidation = new FormValidator(classes, popUpProfile);
+
+popUpElementValidation.enableValidation();
+popUpProfileValidation.enableValidation();
