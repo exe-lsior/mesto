@@ -6,7 +6,7 @@ export class FormValidator {
         this._inputErrorClass = classes.inputErrorClass;
         this._errorClass = classes.errorClass;
         
-        this._formProfileElement = formProfileElement; //ssssssssss
+        this._formProfileElement = formProfileElement; 
         this._buttonElement = this._formProfileElement.querySelector(this._submitButtonSelector);
         this._inputList = Array.from(this._formProfileElement.querySelectorAll(this._inputSelector));
     }
@@ -46,16 +46,19 @@ export class FormValidator {
         });
     };
 
+    //кнопка неактивна
     _submitButtonInactive() {
         this._buttonElement.classList.add(this._inactiveButtonClass);
         this._buttonElement.disabled = true;
     };
-    
+
+    //кнопка активна
     _submitButtonActive() {
         this._buttonElement.classList.remove(this._inactiveButtonClass);
         this._buttonElement.disabled = false;
     }; 
     
+    //переключение кнопки
     _toggleButtonState() {
         if (this._hasInvalidInput()) {
             this._submitButtonInactive();
@@ -64,6 +67,7 @@ export class FormValidator {
         }
     }
 
+    //установить слушатели
     _setEventListeners () {
         this._toggleButtonState()
 
@@ -75,6 +79,7 @@ export class FormValidator {
         });
     }
 
+    //сбросить ошибки
     resetError() {
         this._inputList.forEach((inputElement) => {
             this._hideInputError(inputElement);

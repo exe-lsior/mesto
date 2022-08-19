@@ -7,6 +7,7 @@ export class Card {
         this._openPlacePopUp = openPlacePopUp;
     }
 
+    //берем шаблон
     _getTemplate() {
         return document
             .querySelector('.template')
@@ -15,6 +16,7 @@ export class Card {
             .cloneNode(true);
     }
 
+    //генерация карточки
     generateCard() {
         this._element = this._getTemplate();
         this.button = this._element.querySelector('.element__main-like');
@@ -26,14 +28,17 @@ export class Card {
         return this._element;
     }
 
+    //переключение лайка
     _toggleLike() {
         this.button.classList.toggle('like_active');
     }
 
+    //удаление карточки
     _deleteCard() {
         this._element.remove()
     }
 
+    //установить слушатели
     _setEventListeners() {
         this.button.addEventListener('click', () => this._toggleLike());
         this._element.querySelector('.element__delete').addEventListener('click', () => this._deleteCard());
