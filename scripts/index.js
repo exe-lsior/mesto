@@ -1,34 +1,8 @@
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
+import { cardData } from './cardData.js';
 
- const initialCards = [
-  {
-    name: 'Татуин',
-    link: 'https://img4.goodfon.com/wallpaper/nbig/3/ec/return-to-tatooine-robot-sushchestva-postroiki.jpg'
-  },
-  {
-    name: 'Джеонозис',
-    link: 'https://gameranx.com/wp-content/uploads/2018/11/databank_geonosis_01_169_1d04e086-720x360.jpg'
-  },
-  {
-    name: 'Корусант',
-    link: 'https://static1.cbrimages.com/wordpress/wp-content/uploads/2017/02/Star-Wars-Coruscant.jpg'
-  },
-  {
-    name: 'Мустафар',
-    link: 'https://www.centax.ru/images/movies/rogue/mustafar-landscape-big.jpeg'
-  },
-  {
-      name: 'Звезда смерти',
-      link: 'https://images.alphacoders.com/107/107763.jpg'
-    },
-  {
-    name: 'Эндор',
-    link: 'https://34travel.me/media/upload/images/2019/december/star-wars/1a.jpg'
-  }
-];
-
-const classes = ({
+const validationConfig = ({
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
@@ -39,16 +13,16 @@ const classes = ({
 
 //popup 
 const popUpProfile = document.getElementById('popup-profile');
-const popUpElement = document.getElementById('el_popup');
+const popupAddCard = document.getElementById('el_popup');
 const popUpCard = document.getElementById('popup_card');
 const buttonPopupProfileOpen = document.getElementById('open_popup');
-const elementPopUpOpen = document.getElementById('open_el_popup');
+const popupAddCardOpenButton = document.getElementById('open_el_popup');
 const buttonPopUpProfileClose = document.getElementById('close_popup');
-const elementPopUpClose = document.getElementById('el_close_popup');
+const popupAddCardCloseButton = document.getElementById('el_close_popup');
 const cardPopUpClose = document.getElementById('cd_close_popup');
 
 //submit form
-const profileElement = document.getElementById('popup-form');
+const profileForm = document.getElementById('popup-form');
 //const formInput = profileElement.querySelector('.popup__input');
 const cardForm = document.getElementById('el-popup-form');
 
@@ -61,7 +35,7 @@ const placeInput = document.getElementById('place');
 const linkInput = document.getElementById('link');
 const popUpDescription = document.querySelector('.popup__description');
 const popUpImage = document.querySelector('.popup__image');
-const elementSaveButton = document.getElementById('save_button')
+const cardFormSubmitButton = document.getElementById('save_button')
 //const userSaveButton = document.getElementById('save-button')
 
 
@@ -71,8 +45,8 @@ const cardsContainer = document.getElementById('elements');
 
 //открытие попапа
 function activatePopUp(popup) {
-popup.classList.add('popup_active');
-document.addEventListener('keydown', closeWithEscape);
+  popup.classList.add('popup_active');
+  document.addEventListener('keydown', closeWithEscape);
 };
 
 // открываем поп-ап нажатием на картинку
@@ -93,22 +67,21 @@ function closeByOverlay(evt) {
 function openProfilePopup() {
   loadUserData();
   activatePopUp(popUpProfile);
-  popUpProfileValidation.resetError();
 }
 
 //закрытие попапа 
 function closePopUp(popup) {
-popup.classList.remove('popup_active');
-document.addEventListener('keydown', closeWithEscape);
+  popup.classList.remove('popup_active');
+  document.removeEventListener('keydown', closeWithEscape);
 };
 
 //закрытие попапа addElement
-function removeElementPopUp () {
-  closePopUp(popUpElement);
+function closeAddCardPopUp() {
+  closePopUp(popupAddCard);
 };
 
 //отправка формы addElement
-function createElement (evt) {
+function handleAddCardFormSubmit (evt) {
   evt.preventDefault();
   
   renderCard({name:placeInput.value, link:linkInput.value});
@@ -116,9 +89,9 @@ function createElement (evt) {
   placeInput.value = '';
   linkInput.value = '';
   
-  closePopUp(popUpElement);
-
-  submitButtonInactive(elementSaveButton);
+  closePopUp(popupAddCard);
+  popupAddCardValidation.resetErrors()
+  popupAddCardValidation.disableSubmitButton();
 };
 
 //загрузить текушие данные
@@ -129,12 +102,14 @@ const loadUserData = () => {
 
 
 //отправка формы user
-function submitUserForm (evt) {
+function handleEditFormSubmit (evt) {
   evt.preventDefault();
 
   nameUser.textContent = nameInput.value;
   jobUser.textContent = jobInput.value;
   
+  popUpProfileValidation.resetErrors();
+  popUpProfileValidation.disableSubmitButton();
   closePopUp(popUpProfile);
 };
 
@@ -144,7 +119,7 @@ function renderCard (card) {
   cardsContainer.prepend(createCard(card));
 };
 
-initialCards.forEach((card) => {
+cardData.forEach((card) => {
   renderCard(card);
 });
 
@@ -157,15 +132,15 @@ function closeWithEscape(evt) {
 }
 
 //слушатели для закрытия кликом по оверлею
-popUpElement.addEventListener('click', closeByOverlay);
+popupAddCard.addEventListener('click', closeByOverlay);
 popUpCard.addEventListener('click', closeByOverlay);
 popUpProfile.addEventListener('click', closeByOverlay);
 
 //кнопка создания карточки
-cardForm.addEventListener('submit', createElement);
+cardForm.addEventListener('submit', handleAddCardFormSubmit);
 
 //кнопка отправки формы User
-profileElement.addEventListener('submit', submitUserForm);
+profileForm.addEventListener('submit', handleEditFormSubmit);
 
 //кнопка открытия попапа User
 buttonPopupProfileOpen.addEventListener('click', () => openProfilePopup());
@@ -174,17 +149,17 @@ buttonPopupProfileOpen.addEventListener('click', () => openProfilePopup());
 buttonPopUpProfileClose.addEventListener('click', () => closePopUp(popUpProfile));
 
 //кнопка закрытия попапа addElement
-elementPopUpClose.addEventListener('click', () => removeElementPopUp());
+popupAddCardCloseButton.addEventListener('click', () => closeAddCardPopUp());
 
 //Кнопка закрытия popUpCard
 cardPopUpClose.addEventListener('click', () => closePopUp(popUpCard));
 
 //кнопка открытия попапа addElement
-elementPopUpOpen.addEventListener('click', () => activatePopUp(popUpElement));
+popupAddCardOpenButton.addEventListener('click', () => activatePopUp(popupAddCard));
 
 //валидация 
-const popUpElementValidation = new FormValidator(classes, popUpElement);
-const popUpProfileValidation = new FormValidator(classes, popUpProfile);
+const popupAddCardValidation = new FormValidator(validationConfig, popupAddCard);
+const popUpProfileValidation = new FormValidator(validationConfig, popUpProfile);
 
-popUpElementValidation.enableValidation();
+popupAddCardValidation.enableValidation();
 popUpProfileValidation.enableValidation();

@@ -1,8 +1,8 @@
 export class Card {
-    constructor(initialCards, templateSelector, openPlacePopUp) {
-        this._initialCards = initialCards;
-        this._name = initialCards.name;
-        this._link = initialCards.link;
+    constructor(cardData, templateSelector, openPlacePopUp) {
+        this._cardData = cardData;
+        this._name = cardData.name;
+        this._link = cardData.link;
         this._templateSelector = templateSelector;
         this._openPlacePopUp = openPlacePopUp;
     }
@@ -10,7 +10,7 @@ export class Card {
     //берем шаблон
     _getTemplate() {
         return document
-            .querySelector('.template')
+            .querySelector(this._templateSelector)
             .content
             .querySelector('.element')
             .cloneNode(true);
@@ -19,28 +19,30 @@ export class Card {
     //генерация карточки
     generateCard() {
         this._element = this._getTemplate();
-        this.button = this._element.querySelector('.element__main-like');
+        this._button = this._element.querySelector('.element__main-like');
         this._setEventListeners();
-        this._element.querySelector('.element__image').src = this._link;
-        this._element.querySelector('.element__image').alt = this._name;
+        this._elementImage = this._element.querySelector('.element__image');
+        this._elementImage.src = this._link;
+        this._elementImage.alt = this._name;
         this._element.querySelector('.element__main-name').textContent = this._name;
-        
+
         return this._element;
     }
 
     //переключение лайка
     _toggleLike() {
-        this.button.classList.toggle('like_active');
+        this._button.classList.toggle('like_active');
     }
 
     //удаление карточки
     _deleteCard() {
-        this._element.remove()
+        this._element.remove();
+        this._element = null;
     }
 
     //установить слушатели
     _setEventListeners() {
-        this.button.addEventListener('click', () => this._toggleLike());
+        this._button.addEventListener('click', () => this._toggleLike());
         this._element.querySelector('.element__delete').addEventListener('click', () => this._deleteCard());
         this._element.querySelector('.element__image').addEventListener('click', () => this._openPlacePopUp(this._name, this._link));
     }

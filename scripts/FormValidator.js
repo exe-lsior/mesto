@@ -1,19 +1,19 @@
-export class FormValidator {
-    constructor(classes, formProfileElement) {
+export class FormValidator {Profile
+    constructor(classes, formElement) {
         this._inputSelector = classes.inputSelector;
         this._submitButtonSelector = classes.submitButtonSelector;
         this._inactiveButtonClass = classes.inactiveButtonClass;
         this._inputErrorClass = classes.inputErrorClass;
         this._errorClass = classes.errorClass;
         
-        this._formProfileElement = formProfileElement; 
-        this._buttonElement = this._formProfileElement.querySelector(this._submitButtonSelector);
-        this._inputList = Array.from(this._formProfileElement.querySelectorAll(this._inputSelector));
+        this._formElement = formElement; 
+        this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
+        this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
     }
 
     //показать ошибку
     _showInputError(inputElement, errorMessage)  {
-        const errorElement = this._formProfileElement.querySelector(`.${inputElement.id}-error`);
+        const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
 
         inputElement.classList.add(this._inputErrorClass);
         errorElement.textContent = errorMessage;
@@ -22,7 +22,7 @@ export class FormValidator {
 
     //скрыть
     _hideInputError(inputElement) {
-        const errorElement = this._formProfileElement.querySelector(`.${inputElement.id}-error`);
+        const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
 
         inputElement.classList.remove(this._inputErrorClass);
         errorElement.classList.remove(this._errorClass);
@@ -47,13 +47,13 @@ export class FormValidator {
     };
 
     //кнопка неактивна
-    _submitButtonInactive() {
+    disableSubmitButton() {
         this._buttonElement.classList.add(this._inactiveButtonClass);
         this._buttonElement.disabled = true;
     };
 
     //кнопка активна
-    _submitButtonActive() {
+    _enableSubmitButton() {
         this._buttonElement.classList.remove(this._inactiveButtonClass);
         this._buttonElement.disabled = false;
     }; 
@@ -61,9 +61,9 @@ export class FormValidator {
     //переключение кнопки
     _toggleButtonState() {
         if (this._hasInvalidInput()) {
-            this._submitButtonInactive();
+            this.disableSubmitButton();
         } else {
-            this._submitButtonActive();
+            this._enableSubmitButton();
         }
     }
 
@@ -80,7 +80,7 @@ export class FormValidator {
     }
 
     //сбросить ошибки
-    resetError() {
+    resetErrors() {
         this._inputList.forEach((inputElement) => {
             this._hideInputError(inputElement);
         });
