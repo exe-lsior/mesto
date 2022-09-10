@@ -1,6 +1,6 @@
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
-import { cardData } from './cardData.js';
+import { initialCards } from './initialCards.js';
 
 const validationConfig = ({
   formSelector: '.popup__form',
@@ -119,7 +119,7 @@ function renderCard (card) {
   cardsContainer.prepend(createCard(card));
 };
 
-cardData.forEach((card) => {
+initialCards.forEach((card) => {
   renderCard(card);
 });
 
