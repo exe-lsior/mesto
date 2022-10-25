@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>mesto</title>
-    <link rel="stylesheet" href="./pages/index.css">
+    <!--<link rel="stylesheet" href="./pages/index.css">-->
 </head>
 
 <body class="page">
     <div>
         <header class="header">
-            <img class="header__logo" src="./images/logo.svg" alt="место">
+            <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="место">
         </header>
         <main class="width">
             <section class="profile">
@@ -79,7 +79,7 @@
             <img class="element__image" id="img">
             <div class="element__main">
                 <h2 class="element__main-name" id="elName"></h2>
-                <button class="element__main-like" type="button" id="like"><img src="./images/like-button.svg" alt="лайк"></button>
+                <button class="element__main-like" type="button" id="like"><img src="<%=require('./images/like-button.svg')%>" alt="лайк"></button>
             </div>
             <button class="element__delete" type="button" id="delete"></button>
         </div>
