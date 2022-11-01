@@ -1,10 +1,10 @@
-export class Card {
-    constructor(cardData, templateSelector, openPlacePopUp) {
+export default class Card {
+    constructor({ cardData, handleCardClick }, templateSelector) {
         this._cardData = cardData;
         this._name = cardData.name;
         this._link = cardData.link;
+        this._handleCardClick = handleCardClick;
         this._templateSelector = templateSelector;
-        this._openPlacePopUp = openPlacePopUp;
     }
 
     //берем шаблон
@@ -44,7 +44,8 @@ export class Card {
     _setEventListeners() {
         this._button.addEventListener('click', () => this._toggleLike());
         this._element.querySelector('.element__delete').addEventListener('click', () => this._deleteCard());
-        this._element.querySelector('.element__image').addEventListener('click', () => this._openPlacePopUp(this._name, this._link));
+        this._element.querySelector('.element__image').addEventListener('click', () => {
+            this._handleCardClick(this._name, this._link)
+        })
     }
-
 };

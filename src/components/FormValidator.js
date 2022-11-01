@@ -1,4 +1,4 @@
-export class FormValidator {Profile
+export default class FormValidator {
     constructor(classes, formElement) {
         this._inputSelector = classes.inputSelector;
         this._submitButtonSelector = classes.submitButtonSelector;
@@ -14,7 +14,7 @@ export class FormValidator {Profile
     //показать ошибку
     _showInputError(inputElement, errorMessage)  {
         const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
-
+        console.log(errorElement);
         inputElement.classList.add(this._inputErrorClass);
         errorElement.textContent = errorMessage;
         errorElement.classList.add(this._errorClass);
@@ -23,7 +23,7 @@ export class FormValidator {Profile
     //скрыть
     _hideInputError(inputElement) {
         const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
-
+        
         inputElement.classList.remove(this._inputErrorClass);
         errorElement.classList.remove(this._errorClass);
         errorElement.textContent = '';
