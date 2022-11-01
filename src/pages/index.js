@@ -26,8 +26,18 @@ const popupEditProfile = new PopupWithForm({
   descriptionSelector: '.profile__info-description',
 });
 
+//функция открытия попапа профиля
+function openPopupProfile() {
+  popupEditProfile.open();
+  popupProfileValidation.resetErrors();
+  popupProfileValidation.disableSubmitButton();
+  const profileForm = userParameters.getUserInfo();
+  nameInput.value = profileForm.name;
+  descriptionInput.value = profileForm.description;
+};
+
  //попап добавления карточки
- const popupAddCard = new PopupWithForm({ 
+const popupAddCard = new PopupWithForm({ 
   popupSelector: '.popup_add-card',
   handleFormSubmit: (cardData) => {
     cardList.addItem(createCard(cardData));
@@ -35,6 +45,13 @@ const popupEditProfile = new PopupWithForm({
   }
 });
 popupAddCard.setEventListeners();
+
+//функция открытия попапа добавления карточки
+function openNewCardPopup() {
+  popupAddCard.open();
+  popupAddCardValidation.resetErrors();
+  popupAddCardValidation.disableSubmitButton();
+};
 
 //открыть попап с изображением
 const popupCard = new PopupWithImage('.popup_card');
@@ -62,20 +79,8 @@ const cardList = new Section({
 cardList.renderItems();
 
 //слушатели
-buttonProfilePopupOpen.addEventListener('click', () => {
-const profileForm = userParameters.getUserInfo();
-  nameInput.value = profileForm.name;
-  descriptionInput.value = profileForm.description;
-  popupEditProfile.open();
-  popupProfileValidation.resetErrors();
-  popupProfileValidation.disableSubmitButton();
-});
-
-buttonAddCardPopupOpen.addEventListener('click', () => {
-  popupAddCard.open();
-  popupAddCardValidation.resetErrors();
-  popupAddCardValidation.disableSubmitButton();
-});
+buttonProfilePopupOpen.addEventListener('click', openPopupProfile);
+buttonAddCardPopupOpen.addEventListener('click', openNewCardPopup);
   
 //валидация 
 const popupProfileValidation = new FormValidator(validationConfig, profilePopup); 
