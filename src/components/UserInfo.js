@@ -11,8 +11,8 @@ export default class UserInfo {
         };
     }
 
-    setUserInfo({ name, description }) {
-        this._name.textContent = name;
-        this._description.textContent = description;
+    setUserInfo(userInfo) {
+        this._name.textContent = userInfo.popup_name;
+        this._description.textContent = userInfo.popup_description;
     }
 };

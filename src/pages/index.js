@@ -7,15 +7,11 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import './index.css';
 
-
 //попап редактирования профиля
 const popupEditProfile = new PopupWithForm({ 
   popupSelector: '.popup_edit-profile',
-  handleFormSubmit: () => {
-    userParameters.setUserInfo({
-      name: nameInput.value,
-      description: descriptionInput.value
-    });
+  handleFormSubmit: ({ popup_name, popup_description }) => {
+    userParameters.setUserInfo({ popup_name, popup_description });
     popupEditProfile.close();
    }
  });
