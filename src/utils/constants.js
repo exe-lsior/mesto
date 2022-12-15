@@ -7,6 +7,14 @@ export const validationConfig = ({
     errorClass: 'popup__error_visible'
 }); 
 
+export const apiConfig = {
+  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-52", //переделать название ссылки
+  headers: {
+    authorization: "1d96c9d1-7b2e-4b4b-a30d-1aa78a278f75",
+    "Content-Type": "application/json",
+  }
+}
+
 export  const initialCards = [ 
     { 
       name: 'Татуин', 
@@ -35,8 +43,14 @@ export  const initialCards = [
   ]; 
 
 export const buttonProfilePopupOpen = document.getElementById('open_popup');
+export const avatarImage = document.querySelector('.profile__image');
+export const profileName = document.querySelector('.profile__info-name');
+export const profileDescription = document.querySelector('.profile__info-description');
+export const buttonAvatarPopupOpen = document.querySelector('.profile__image-container');
 export const buttonAddCardPopupOpen = document.querySelector('.profile__button-add');
 export const nameInput = document.querySelector('.popup__input_name');
 export const descriptionInput = document.querySelector('.popup__input_description');
+export const avatarInput = document.querySelector('.popup__input-avatar');
 export const profilePopup = document.querySelector('.popup_edit-profile');
+export const avatarPopup = document.querySelector('.popup_edit-avatar');
 export const newCardPopup = document.querySelector('.popup_add-card');

@@ -11,3 +11,7 @@
         margin: 0;
     }
 }
+
+.profile__image:hover{
+    opacity: 20%;
+}
