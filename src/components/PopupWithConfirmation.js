@@ -6,7 +6,7 @@ export default class PopupWithConfirmation extends Popup {
         this._popupButton = this._popup.querySelector('.popup__button')
     }
 
-    setConfirmAcction(callback) {
+    setConfirmAction(callback) {
         this._confirmDeleteCallback = callback;
     }
 
@@ -15,5 +15,13 @@ export default class PopupWithConfirmation extends Popup {
         this._popupButton.addEventListener('click', () => {
             this._confirmDeleteCallback()
         })
+    }
+
+    loadingState(isLoading) {
+        if (isLoading) {
+            this._popupButton.textContent = 'Удаление...'
+        } else {
+            this._popupButton.textContent = 'Да';
+        }
     }
 }

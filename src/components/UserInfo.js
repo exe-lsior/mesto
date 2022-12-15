@@ -3,7 +3,11 @@ export default class UserInfo {
         this._name = document.querySelector(nameSelector);
         this._description = document.querySelector(descriptionSelector);
         this._avatar = document.querySelector(avatarSelector);
-        //console.log(this._avatar.src)
+        this._id = '';
+    }
+
+    getUserId() {
+        return this._id;
     }
 
     getUserInfo() {
@@ -14,9 +18,10 @@ export default class UserInfo {
         };
     }
 
-    setUserInfo(userInfo) {
-        this._name.textContent = userInfo.popup_name;
-        this._description.textContent = userInfo.popup_description;
-        this._avatar.src = userInfo.popup_avatar;
+    setUserInfo({ name, about, avatar, _id }) {
+        this._name.textContent = name;
+        this._description.textContent = about;
+        this._avatar.src = `url(${avatar})`;
+        this._id = _id;
     }
 };
