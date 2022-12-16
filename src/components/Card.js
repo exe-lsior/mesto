@@ -1,15 +1,14 @@
 export default class Card {
-    constructor({ name, link, likes = [], _id, owner = {}, userId, handleCardClick, deleteCard, likeCardHandler }, templateSelector) {
+    constructor({ likes = [], _id, name, link, owner = {}, userId, handleCardClick, deleteCard, handleCardLike }, templateSelector) {
+        this._likesMassive = likes; 
+        this._cardId = _id;
         this._name = name;
         this._link = link;
-        this._likesList = likes; // изменить
-        this._cardId = _id;
         this._ownerId = owner._id;
         this._currentUserId = userId;
-
         this._handleCardClick = handleCardClick;
         this._deleteCard = deleteCard;
-        this._likeCardHandler = likeCardHandler;
+        this._handleCardLike = handleCardLike;
 
         this._templateSelector = templateSelector;
     }
@@ -20,19 +19,19 @@ export default class Card {
         }
     }
 
-    _isCardLiked() {
-        return this._likesList
+    _isItLiked() {
+        return this._likesMassive
         .find(owner => owner._id === this._currentUserId);
     }
 
     _showLikesAmount(likes) {
-        this._showLikesAmount.textContent = likes.length;
-    }
+        this._likesAmount.textContent = likes.length;
+      }
 
     renderLikes(likes) {
         this.setLikes(likes);
-        this._showLikesAmount(this._likesList);
-        if (this._isCardLiked()) {
+        this._showLikesAmount(this._likesMassive);
+        if (this._isItLiked()) {
             this._likeButton.classList.add('like_active');
         } else {
             this._likeButton.classList.remove('like_active');
@@ -44,11 +43,11 @@ export default class Card {
     }
 
     getLikes() {
-        return this._likesList;
+        return this._likesMassive;
     }
 
     setLikes(likes) {
-        this._likesList = likes;
+        this._likesMassive = likes;
     }
 
     //берем шаблон
@@ -71,12 +70,12 @@ export default class Card {
         this._elementTitle = this._element.querySelector('.element__main-name');
         this._likesAmount = this._element.querySelector('.element__main-likes')
 
+        this._elementTitle.textContent = this._name;
         this._elementImage.src = this._link;
         this._elementImage.alt = this._name;
-        this._elementTitle.textContent = this._name;
-
+        
         this._checkCardOwner()
-        this.renderLikes(this._likesList)
+        this.renderLikes(this._likesMassive)
         this._setEventListeners();
 
         return this._element;
@@ -95,10 +94,8 @@ export default class Card {
 
     //установить слушатели
     _setEventListeners() {
-        this._likeButton.addEventListener('click', () => this._likeCardHandler());
+        this._likeButton.addEventListener('click', () => this._handleCardLike());
         this._deleteButton.addEventListener('click', () => this._deleteCard(this._cardId));
-        this._elementImage.addEventListener('click', () => {
-            this._handleCardClick(this._name, this._link)
-        })
+        this._elementImage.addEventListener('click', () => this._handleCardClick(this._name, this._link));
     }
 };

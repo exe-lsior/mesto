@@ -13,11 +13,11 @@ export default class PopupWithConfirmation extends Popup {
     setEventListeners() {
         super.setEventListeners();
         this._popupButton.addEventListener('click', () => {
-            this._confirmDeleteCallback()
-        })
+            this._confirmDeleteCallback();
+        });
     }
 
-    loadingState(isLoading) {
+    toggleStatus(isLoading) {
         if (isLoading) {
             this._popupButton.textContent = 'Удаление...'
         } else {

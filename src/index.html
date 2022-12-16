@@ -16,12 +16,12 @@
             <section class="profile">
                 <div class="profile__image-container">
                     <button class="profile__image-edit" type="button"></button>
-                    <img class="profile__image" src="" alt="профиль">
+                    <img class="profile__image" src="<%=require('./images/image.jpg')%>" alt="профиль">
                 </div>
                 <div class="profile__info">
-                    <h1 class="profile__info-name" id="name-info">Дарт Вейдер</h1>
+                    <h1 class="profile__info-name" id="name-info">Идет</h1>
                     <button class="profile__button-edit" type="button" id="open_popup"></button>
-                    <p class="profile__info-description" id="description-info">Описание</p>
+                    <p class="profile__info-description" id="description-info">загрузка...</p>
                 </div>
                 <button class="profile__button-add" type="button" id="open_el_popup"></button>
             </section>
@@ -102,7 +102,7 @@
     </div>
 
     <!--Template-->
-    <template  id="template" class="template">
+    <template class="template">
         <div class="element">
             <img class="element__image" id="img">
             <div class="element__main">

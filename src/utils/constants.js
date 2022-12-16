@@ -7,14 +7,6 @@ export const validationConfig = ({
     errorClass: 'popup__error_visible'
 }); 
 
-export const apiConfig = {
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-54", //переделать название ссылки
-  headers: {
-    authorization: "f4235ef4-85b7-4215-be28-8acef2d83ac1",
-    "Content-Type": "application/json",
-  }
-}
-
 export const buttonProfilePopupOpen = document.getElementById('open_popup');
 export const avatarImage = document.querySelector('.profile__image');
 export const profileName = document.querySelector('.profile__info-name');

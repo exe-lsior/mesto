@@ -1,47 +1,40 @@
 export default class Api {
-  constructor({ baseUrl, headers }) {
-      this._baseUrl = baseUrl;
+
+  constructor({ url, headers }) {
+      this._url = url;
       this._headers = headers;
   }
 
-  _checkRes(res) {
-      if (res.ok) {
-          return res.json();
-      }
-
-      return Promise.reject(`Ошибка ${res.status}`);
-  }
-
   getUserInfo() {
-      return fetch(`${this._baseUrl}/users/me`, {
+      return fetch(`${this._url}/users/me`, {
           method: 'GET',
           headers: this._headers,
       })
-      .then(this._checkRes)
+      .then(this._checkResponse)
   }
 
   getInitialCards() {
-      return fetch(`${this._baseUrl}/cards`, {
+      return fetch(`${this._url}/cards`, {
           method: 'GET',
           headers: this._headers,
       })
-      .then(this._checkRes)
+      .then(this._checkResponse)
   }
 
-  editProfileInfo(info) {
-      return fetch(`${this._baseUrl}/users/me`, {
+  editProfile(data) {
+      return fetch(`${this._url}/users/me`, {
           method: 'PATCH',
           headers: this._headers,
           body: JSON.stringify({
-              name: info.name,
-              about: info.description
+              name: data.name,
+              about: data.description
           })
       })
-      .then(this._checkRes)
+      .then(this._checkResponse)
   }
 
-  addNewElementCard(cardData) {
-      return fetch(`${this._baseUrl}/cards`, {
+  addNewElement(cardData) {
+      return fetch(`${this._url}/cards`, {
           method: 'POST',
           headers: this._headers,
           body: JSON.stringify({
@@ -49,41 +42,50 @@ export default class Api {
               link: cardData.elementLink
           })
       })
-      .then(this._checkRes)
+      .then(this._checkResponse)
   }
 
-  deleteElementCard(id) {
-      return fetch(`${this._baseUrl}/cards/${id}`, {
+  deleteElement(id) {
+      return fetch(`${this._url}/cards/${id}`, {
           method: 'DELETE',
           headers: this._headers,
       })
-      .then(this._checkRes)
+      .then(this._checkResponse)
   }
 
   setLike(id) {
-      return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      return fetch(`${this._url}/cards/${id}/likes`, {
           method: 'PUT',
           headers: this._headers,
       })
-      .then(this._checkRes)
+      .then(this._checkResponse)
   }
 
   removeLike(id) {
-      return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      return fetch(`${this._url}/cards/${id}/likes`, {
           method: 'DELETE',
           headers: this._headers,
       })
-      .then(this._checkRes)
+      .then(this._checkResponse)
   }
 
   editAvatar(avatar) {
-      return fetch(`${this._baseUrl}/users/me/avatar`, {
+      return fetch(`${this._url}/users/me/avatar`, {
           method: 'PATCH',
           headers: this._headers,
           body: JSON.stringify({
               avatar: avatar,
           })
       })
-      .then(this._checkRes)
+      .then(this._checkResponse)
   }
+
+  _checkResponse(response) {
+    if (response.ok) {
+        return response.json();
+    }
+
+    return Promise.reject(`Ошибка ${response.status}`);
+  }
+
 }
